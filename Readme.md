@@ -13,14 +13,14 @@
 ## wiring 7-segment (software SPI, ESP32-DevKitC-32D)
 
 ESP32-DevKitC-32D | Display
---- | ---
-GND | GND
+---    | ---
+GND    | GND
 5V/VIN | VCC
-25  | DIN
-26  | CLK
-27  | CS
+25     | CS
+14     | CLK
+13     | DIN
 
-## wiring dot-matrix-display using hardware SPI
+## wiring dot-matrix-display using hardware SPI (not tested)
 
 ESP32-DevKitC-32D | Display
 ---     | ---

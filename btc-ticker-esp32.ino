@@ -61,7 +61,7 @@ unsigned long timeout_flashing_dot = 0;
 unsigned int  timeout_reconnect_count = 0;
 
 #ifdef SEGMENT7
-  LedControl lc = LedControl(25, 26, 27, 1);
+  LedControl lc = LedControl(13, 14, 25, 1);
   unsigned int  timeout_swap_usdbtc = 0;
   boolean       usdbtc = false;
 #endif
