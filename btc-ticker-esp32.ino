@@ -23,7 +23,7 @@ exchange_settings exchange = bitfinexUSDBTC;
 
 
 #ifdef FEATURE_MDNS
-  #include <ESP8266mDNS.h>
+  #include <ESPmDNS.h>
 #endif
 
 #ifdef FEATURE_OTA
@@ -32,9 +32,10 @@ exchange_settings exchange = bitfinexUSDBTC;
 
 #include <ArduinoJson.h>
 
-#include <ESP8266WiFi.h>
+#include <WiFi.h>
+#include <WiFiClientSecure.h>
 #include <DNSServer.h>
-#include <ESP8266WebServer.h>
+#include <WebServer.h>
 #include <WiFiManager.h>
 #include <WebSocketClient.h>  // https://github.com/pablorodiz/Arduino-Websocket
 
@@ -60,7 +61,7 @@ unsigned long timeout_flashing_dot = 0;
 unsigned int  timeout_reconnect_count = 0;
 
 #ifdef SEGMENT7
-  LedControl lc = LedControl(D7, D5, D8, 1);
+  LedControl lc = LedControl(25, 26, 27, 1);
   unsigned int  timeout_swap_usdbtc = 0;
   boolean       usdbtc = false;
 #endif
@@ -92,7 +93,7 @@ void setup() {
  
   // autoconfiguration portal for wifi settings
 #ifdef HOSTNAME
-  WiFi.hostname(HOSTNAME);
+  WiFi.setHostname(HOSTNAME);
 #endif
   wifiManager.setAPCallback(configModeCallback);
   wifiManager.autoConnect();
@@ -346,7 +347,7 @@ void setDashes (int len) {
 void reboot (void) {
   setDashes(8);
   delay(1000);
-  ESP.reset();
+  ESP.restart();
 }
 
 void configModeCallback (WiFiManager *myWiFiManager) {
